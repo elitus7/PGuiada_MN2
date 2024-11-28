@@ -17,14 +17,14 @@ program e_explicit
     real :: T(nz), T_new(nz) !Vectors de temperatura que usarem en el bucle.
     real :: T_results(Nz, Ntmax) !Array que usem per guardar tot el conjunt de resultats. Caldrà assegurar-nos de què Nt no excedeix Ntmax!
     real :: Deltat, Deltaz !Amplades del mallat temporal i del mallat espacial.
-    real :: t_real
+    real :: t_real(Ntmax)
     real :: z_real(Nz)
-
+    write(*,*) tnorm
     !Cálcul del nombre de punts del mallat temporal. Usant la subrutina calculNt.
     gamma = 0.25
     call calculNt(tf, gamma, Nt)
 
-    Deltat = tf / Nt !Assignem el valor del mallat temporal.
+    Deltat = tf / Nt !Assignem el valor del mallat temporal normalitzat.
     Deltaz = real(zf) / (Nz-1) !Assignem el valor del mallat espacial.
     print *, "Amplada mallat temporal normalitzat: ",Deltat
 
@@ -44,6 +44,7 @@ program e_explicit
     T_new(1) = T_0 !Per z inicial.
     T_new(Nz) = T_0 !Per z final.
 
+    !Bucle que ens donarà la matriu resultat, és a dir, el vector de temperatures.
     do n = 1, Nt
         !Ara fem la iteració per tots els punts de l'espai, donat un temps.
         do j = 2, Nz-1
@@ -67,12 +68,25 @@ end do
 
 open(unit=10, file="eulex_results.dat", status="replace")
     do n = 1, Nt
-        t_real = (n-1)*Deltat*tnorm
-        write(10, *) t_real, (T_results(j, n)*T_norm - 273.15, j = 1, Nz) !A l'arxiu, la primera columna és el temps real. Cada columna fa referència a una posició i cada fila a un instant de temps.
+        t_real(n) = (n-1)*Deltat*tnorm
+        write(10, *) (T_results(j, n)*T_norm - 273.15, j = 1, Nz) !A l'arxiu, la primera columna és el temps real. Cada columna fa referència a una posició i cada fila a un instant de temps.
     end do
 close(10)
 write(*,*) "========================="
 write(*,*) "Els resultats es poden veure a l'arxiu 'eulex_results.dat'."
+
+open(unit=10, file="posicions_z.dat", status="replace")
+    do n = 1, Nz
+        write(10,*) z_real(n)
+    end do
+close(10)
+
+open(unit=10, file="temps_t.dat", status="replace")
+    do j = 1, Nt
+        write(10,*) t_real(j)
+    end do
+close(10)
+
 !Subrutina que ens permet calcular el nombre de punts del mallat temporal en funció del problema.
 contains
     subroutine calculNt(tf, gamma, Nt)
