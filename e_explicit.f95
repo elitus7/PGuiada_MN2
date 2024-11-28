@@ -2,10 +2,10 @@
 program e_explicit
     implicit none(type, external)
 
-    real, parameter :: cv = 3686, p = 1081, k = 0.56, s = 0.472, pext = 944000 !Constant físiques.
+    real, parameter :: cv = 3686, p = 1081, k = 0.56, s = 0.472, pext = 944000 !Constant físiques necessàries.
     real, parameter :: znorm = 0.02 !Factor de normalització espacial.
     real :: tnorm = ((znorm**2)*cv*p)/k !Factor de normalització temporal.
-    real :: T_norm = 36.5 + 273.15 !Factor de normalització de la temperatura.
+    real :: T_norm = 36.5 + 273.15 !Factor de normalització de la temperatura en graus Kelvin.
     integer :: n, j !Índexs que usarem per iterar. n serà l'índex temporal i j serà l'índex espacial.
     integer, parameter :: Nz = 101 !Nombre de punts del mallat espacial.
     integer, parameter :: Ntmax = 30000 !Nombre de punts màxim del mallat espacial (em feia falta definir-ho perquè per treballar amb matrius les dimensions han de ser "paramter"...).
@@ -26,9 +26,10 @@ program e_explicit
 
     Deltat = tf / Nt !Assignem el valor del mallat temporal.
     Deltaz = real(zf) / (Nz-1) !Assignem el valor del mallat espacial.
-    print *, Deltat
+    print *, "Amplada mallat temporal normalitzat: ",Deltat
 
-    print *, Nt
+    write(*,*) "Nombre de punts del mallat temporal normalitzat :", Nt
+    write(*,*) "Nombre de punts del mallat espacial normalitzat :", Nz
     if (Nt > Ntmax) then !Comprovem que el mallat temporal no és més gran del màxim permès.
         write(*,*) "T'has passat amb el mallat temporal, fes-lo mes petit o dona un Ntmax major!"
         stop
@@ -37,9 +38,8 @@ program e_explicit
     !Inicialitzem els valors de temperatura. La temperatura inicial és en tots els punts T0.
     T = T_0
     T_new = T_0
-    print *, T_new(1)
+
     T_results(:,1) = T !Guardem aquesta informació. La primera columna es correspondrà amb els valors de T en tots els punts de l'espai per a temps inicial.
-    print *, T(1)
     !Primer apliquem les condicions de contorn, de forma que la temperatura al primer punt i al darrer siguin T0.
     T_new(1) = T_0 !Per z inicial.
     T_new(Nz) = T_0 !Per z final.
@@ -57,7 +57,7 @@ program e_explicit
         T_results(:,n+1) = T
     end do
 !write(*,*) size(T) !Naturalment és 101, la quantitat de punts del mallat espacial
-
+write (*,*) "Temperatura normalitzada a les fronteres: ", T_new(1), "/", T_new(Nz)
 
 !Desnormalitzem i guardem en un arxiu. Per desnormalitzar només cal multiplicar la variable normalitzada pel corresponent factor de normalització.
 
@@ -71,7 +71,8 @@ open(unit=10, file="eulex_results.dat", status="replace")
         write(10, *) t_real, (T_results(j, n)*T_norm - 273.15, j = 1, Nz) !A l'arxiu, la primera columna és el temps real. Cada columna fa referència a una posició i cada fila a un instant de temps.
     end do
 close(10)
-
+write(*,*) "========================="
+write(*,*) "Els resultats es poden veure a l'arxiu 'eulex_results.dat'."
 !Subrutina que ens permet calcular el nombre de punts del mallat temporal en funció del problema.
 contains
     subroutine calculNt(tf, gamma, Nt)
