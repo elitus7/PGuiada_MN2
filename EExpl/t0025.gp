@@ -1,5 +1,5 @@
 set terminal pngcairo enhanced size 800,600 font "Arial,12"
-set output 'ta0_025.png'
+set output 't0025.png'
 set title "Temperatura vs. Posició i Temps"
 set ylabel "Temps (s)"
 set xlabel "Posició (cm)"
