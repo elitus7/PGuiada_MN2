@@ -22,7 +22,7 @@ program e_explicit
     write(*,*) tnorm
     write(*,*) T_norm
     !Cálcul del nombre de punts del mallat temporal. Usant la subrutina calculNt.
-    gamma = 0.25
+    gamma = 0.49
     call calculNt(tf, gamma, Nt)
 
     Deltat = tf / Nt !Assignem el valor del mallat temporal normalitzat.
@@ -67,7 +67,7 @@ do j = 1, Nz
     z_real(j) = (j-1)*Deltaz*znorm
 end do
 
-open(unit=10, file="eulex_results.dat", status="replace")
+open(unit=10, file="eulex_results_g049.dat", status="new")
     do n = 1, Nt
         t_real(n) = (n-1)*Deltat*tnorm
         write(10, *) (T_results(j, n)*T_norm - 273.15, j = 1, Nz) !Cada columna fa referència a una posició i cada fila a un instant de temps.
@@ -76,13 +76,13 @@ close(10)
 write(*,*) "========================="
 write(*,*) "Els resultats es poden veure a l'arxiu 'eulex_results.dat'."
 
-open(unit=10, file="posicions_z.dat", status="replace")
+open(unit=10, file="posicions_z_g049.dat", status="new")
     do n = 1, Nz
         write(10,*) z_real(n)
     end do
 close(10)
 
-open(unit=10, file="temps_t.dat", status="replace")
+open(unit=10, file="temps_t_g049.dat", status="new")
     do j = 1, Nt
         write(10,*) t_real(j)
     end do
@@ -90,7 +90,7 @@ close(10)
 
 !Ens guardem en un altre arxiu la temperatura en funció de la posició pel temps final. Ens resultarà útil per graficar i comparar mètodes numèrics amb la solució analítica.
 
-open(unit=10, file="eulex_results_f.dat", status="replace")
+open(unit=10, file="eulex_results_f_g049.dat", status="new")
     do j = 1, Nz
         write(10, *) z_real(j)*100, (T_results(j, Nt) * T_norm - 273.15)
     end do

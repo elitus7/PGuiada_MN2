@@ -5,5 +5,6 @@ set ylabel "Temperatura (ºC)"
 set xlabel "Posició (cm)"
 set xrange[0:2]
 set yrange[0:60]
+set grid
 plot "resultats.dat" with lines
 set output
