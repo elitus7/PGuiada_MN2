@@ -88,6 +88,14 @@ open(unit=10, file="temps_t.dat", status="replace")
     end do
 close(10)
 
+!Ens guardem en un altre arxiu la temperatura en funció de la posició pel temps final. Ens resultarà útil per graficar i comparar mètodes numèrics amb la solució analítica.
+
+open(unit=10, file="eulex_results_f.dat", status="replace")
+    do j = 1, Nz
+        write(10, *) z_real(j)*100, (T_results(j, Nt) * T_norm - 273.15)
+    end do
+close(10)
+
 !Subrutina que ens permet calcular el nombre de punts del mallat temporal en funció del problema.
 contains
     subroutine calculNt(tf, gamma, Nt)
