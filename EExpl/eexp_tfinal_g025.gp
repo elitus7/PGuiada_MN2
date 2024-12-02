@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced size 800,600 font "Arial,12"
+set terminal pngcairo enhanced size 800,600 font "Cambria,12"
 set output 'eexp_tfinal_g025.png'
 set title "Temperatura vs. Posició per t_a = 0.025 amb Relació de Mallats 0.25"
 set ylabel "Temperatura (ºC)"
@@ -6,7 +6,7 @@ set xlabel "Posició (cm)"
 set xrange[0:2]
 set yrange[0:60]
 set grid
-set key inside bottom right # Posició de la llegenda
+set key at screen 0.765, 0.165 center font "Cambria, 9.5"
 
 # Línies verticals
 set arrow from 1.25, graph 0 to 1.25, graph 1 nohead lt 2 lw 1 lc rgb "black"
