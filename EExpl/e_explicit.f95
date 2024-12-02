@@ -22,7 +22,7 @@ program e_explicit
     write(*,*) tnorm
     write(*,*) T_norm
     !Cálcul del nombre de punts del mallat temporal. Usant la subrutina calculNt.
-    gamma = 0.49
+    gamma = 0.25
     call calculNt(tf, gamma, Nt)
 
     Deltat = tf / Nt !Assignem el valor del mallat temporal normalitzat.
