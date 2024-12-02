@@ -22,7 +22,7 @@ program e_explicit
     write(*,*) tnorm
     write(*,*) T_norm
     !Cálcul del nombre de punts del mallat temporal. Usant la subrutina calculNt.
-    gamma = 0.49
+    gamma = 0.25
     call calculNt(tf, gamma, Nt)
 
     Deltat = tf / Nt !Assignem el valor del mallat temporal normalitzat.
@@ -95,6 +95,8 @@ open(unit=10, file="eulex_results_f_g025.dat", status="replace")
         write(10, *) z_real(j)*100, (T_results(j, Nt) * T_norm - 273.15)
     end do
 close(10)
+
+call system("copy eulex_results_f_g025.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
 
 !Subrutina que ens permet calcular el nombre de punts del mallat temporal en funció del problema.
 contains

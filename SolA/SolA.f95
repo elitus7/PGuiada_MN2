@@ -7,7 +7,7 @@ program sola
     real, parameter :: Tc = 36.5+273.15, T0 = (V**2*s)/k
     real, parameter :: Tc_norm = (36.5+273.15)/T0
     real, parameter :: t_norm = 0.025
-    real, parameter :: z_ini = 0, z_f= 1, discr = 0.001
+    real, parameter :: z_ini = 0, z_f= 1, discr = 2/100
     real :: valor, valor_suma
     real :: z_norm
     integer, parameter :: n_max = int((z_f-z_ini)/discr) +1, m_max = int((z_f-z_ini)/discr) +1
@@ -42,5 +42,7 @@ program sola
     write(10,*) valors_z(n)* 2, valors_sol(n) ! Desfem la normalització de z
 
     end do
+
+    call system("copy resultats.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
 
 end program sola
