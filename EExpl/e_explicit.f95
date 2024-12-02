@@ -96,6 +96,8 @@ open(unit=10, file="eulex_results_f_g025.dat", status="replace")
     end do
 close(10)
 
+call system("copy eulex_results_f_g025.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
+
 !Subrutina que ens permet calcular el nombre de punts del mallat temporal en funció del problema.
 contains
     subroutine calculNt(tf, gamma, Nt)
