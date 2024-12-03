@@ -34,6 +34,11 @@ program jacobi
         B(101,i) = 0
     END DO
     DO i = 1,101
+        DO j = 1,101
+            Id(i,j) = 0
+        END DO
+    END DO
+    DO i = 1,101
         Id(i,i) = 1
     END DO
     A = Id - B
@@ -58,7 +63,7 @@ program jacobi
             END IF
         END DO
     END DO
-    !Definim la matriu diagonal superior
+    !Definim la matriu diagonal inferior
     DO i = 1,101
         DO j = 1,101
             IF (j > i) THEN
@@ -68,17 +73,18 @@ program jacobi
             END IF
         END DO 
     END DO
-    !Definim la matriu diagonal inferior
+    !Definim la matriu diagonal superior
     DO i = 1,101
         Dinv(i,i) = 1/D(i,i)
     END DO
     !Definim la inversa de la diagonal
     !Fem que la suposició inicial x_0 sigui Tm
 
-    DO WHILE ((Tn(50)-Tm(50))**2 > 0.001**2) 
+    DO WHILE ((Tn(50)-Tm(50))**2 > 0.01**2) 
         Tn = MATMUL(-Dinv,MATMUL((E+F),T0))+ MATMUL(Dinv,Tm)
     END DO
     ! Apliquem  el metode del Jacobi amb un error de 0.01 just al centre 
+    Write(*,*) Tn
 END program jacobi
 
 
