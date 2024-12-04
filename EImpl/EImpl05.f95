@@ -1,4 +1,4 @@
-program eulerimp
+program eulerimp05
     implicit none
 
     REAL :: T0(101) ! T inicial (Tc a tot arreu)
@@ -19,6 +19,7 @@ program eulerimp
     DO j = 1,101
         T0(j) = Tc 
     END DO
+    !Definim una T inicial on T=Tc en tot l'espai
     DO s = 2,100
         B(s,s-1) = 1 * ((pas_t)/((pas_x)**2))
         B(s,s) = -2 * ((pas_t)/((pas_x)**2))
@@ -38,7 +39,6 @@ program eulerimp
     END DO
     A = Id - B
     ! Definim la part esquerra de la igualtat, tenim una forma de Ax=B
-
     DO h = 1,101
         DO n = 1,101
             IF (h == n) THEN
@@ -74,18 +74,22 @@ program eulerimp
     END DO
     !Definim la inversa de la diagonal
     Tm = T0
-    DO i = 1,5 !fem 5 pases per arribar a t=0.025
+    DO i = 1,5 !fem 5 pases per arribar a t = 0.025
         DO x = 2,100
             Tm(x) = Tm(x) + pas_t
         END DO
-        ! Definim la part dreta de la igualtat
- 
-        !Fem que la suposició inicial x_0 sigui tota 0
+        ! Definim la part dreta de la igualtat Ax = B
+        !Fem que la suposició inicial x_0 sigui Tn (Tn encara no definit en primera iteració = 0)
         DO j = 1,10000
             Tn = MATMUL(-Dinv,MATMUL((E+F),Tn)) + MATMUL(Dinv,Tm)
         END DO
-        ! Apliquem  el metode del Jacobi amb un error de 0.01 just al centre
+        ! Apliquem  el metode del Jacobi amb 10000 iteracions
         Tm = Tn 
     END DO
-    WRITE(*,*) Tn
-END program eulerimp
+    !Apliquem el metode de Euler implicit
+    OPEN(unit=10, file="Temperatura_Eulimp_05.dat", status="replace")
+    DO i = 1, 101
+        WRITE(10,*) Tn(i)*674
+    END DO
+    !Creem un arxiu .dat on guardem els valors de Tn desnormalitzats
+END program eulerimp05
