@@ -89,10 +89,21 @@ program eulerimp1
     !Hem aplicat el metode de Euler implicit
     OPEN(unit=10, file="Temperatura_Eulimp_1.dat", status="replace")
         DO i = 1, 101
-            WRITE(10,*) Tn(i)*674
+            WRITE(10,*) Tn(i)*674 - 273.15
         END DO
         !Creem un arxiu .dat on guardem els valors de Tn desnormalitzats
+    OPEN(unit=10, file="Posicio_Eulimp.dat", status="replace")
+        DO i = 1,101
+            WRITE(10,*) (0.02/100)*(i-1)
+        END DO
+        !Creem un arxiu .dat que generi els diferents valors de x
+    OPEN(unit=10, file="Temps_Eulimp_1.dat", status="replace")
+        DO i = 1,3
+            WRITE(10,*) (0.02/100)*(i-1)
+        END DO
+        !Creem un arxiu .dat que generi els diferents valors del temps
 END program eulerimp1
+
 
 
     
