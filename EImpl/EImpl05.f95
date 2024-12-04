@@ -3,8 +3,7 @@ program eulerimp
 
     REAL :: T0(101) ! T inicial (Tc a tot arreu)
     REAL :: Tm(101) ! Tn-1
-    REAL :: Tn(101) ! Tn
-    REAL :: Nul(101) 
+    REAL :: Tn(101) ! Tn 
     REAL :: B(101,101) ! Matriu de 1, -2, 1
     REAL :: Id(101,101) ! Matriu identitat
     REAL :: A(101,101) ! Matriu que multiplica Tn
@@ -14,8 +13,7 @@ program eulerimp
     REAL :: Dinv(101,101) ! inversa de D
     REAL, parameter :: Tc = 309.65/674 !valor normalitzat de la temperatura a les fronteres
     REAL, parameter :: pas_x = 0.01
-    REAL, parameter :: pas_t = pas_x
-    INTEGER :: iteracions
+    REAL, parameter :: pas_t = pas_x/2
     INTEGER :: j,i,k,l,p,o,m,n,h,y,t,r,u,s,x
 
     DO j = 1,101
@@ -76,24 +74,18 @@ program eulerimp
     END DO
     !Definim la inversa de la diagonal
     Tm = T0
-    DO i = 1,4
-        iteracions = i
+    DO i = 1,5 !fem 5 pases per arribar a t=0.025
         DO x = 2,100
             Tm(x) = Tm(x) + pas_t
         END DO
         ! Definim la part dreta de la igualtat
  
         !Fem que la suposició inicial x_0 sigui tota 0
-        DO WHILE ((Tn(50)-Tm(50))**2 > 0.01**2) 
+        DO j = 1,10000
             Tn = MATMUL(-Dinv,MATMUL((E+F),Tn)) + MATMUL(Dinv,Tm)
         END DO
         ! Apliquem  el metode del Jacobi amb un error de 0.01 just al centre
         Tm = Tn 
-        WRITE(*,*) Tm
     END DO
-    WRITE(*,*) iteracions
+    WRITE(*,*) Tn
 END program eulerimp
-
-
-    
-
