@@ -85,7 +85,7 @@ program eulerimp
  
         !Fem que la suposició inicial x_0 sigui tota 0
         DO WHILE ((Tn(50)-Tm(50))**2 > 0.01**2) 
-            Tn = MATMUL(-Dinv,MATMUL((E+F),Nul)) + MATMUL(Dinv,Tm)
+            Tn = MATMUL(-Dinv,MATMUL((E+F),Tn)) + MATMUL(Dinv,Tm)
         END DO
         ! Apliquem  el metode del Jacobi amb un error de 0.01 just al centre
         Tm = Tn 
