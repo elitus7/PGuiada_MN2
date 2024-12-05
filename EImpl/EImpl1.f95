@@ -102,6 +102,11 @@ program eulerimp1
             WRITE(10,*) (0.02/100)*(i-1)
         END DO
         !Creem un arxiu .dat que generi els diferents valors del temps
+    OPEN(unit=10, file="Resultats_Eulimp_1.dat", status="replace")
+        DO i = 1, 101
+            WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02/100)*(i-1))
+        END DO
+
 END program eulerimp1
 
 
