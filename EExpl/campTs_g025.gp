@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced size 800,600 font "Cambria,12"
+set terminal pngcairo enhanced size 1920,1080 enhanced font "Cambria,26" 
 set output 'campTs_g025.png'
 set title "Temperatura vs. Posició i Temps amb Relació de Mallats 0.25"
 set ylabel "Temps (s)"
@@ -6,6 +6,7 @@ set xlabel "Posició (cm)"
 set label 1 center rotate at screen 0.97,0.5 "Temperatura (ºC)" #Etiqueta rotada
 set xrange[0:2]
 set yrange[0:71]
+set samples 60,60
 
 #set key inside top right # Posició de la llegenda
 
