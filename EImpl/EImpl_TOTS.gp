@@ -15,7 +15,7 @@ set arrow from graph 0, first 50 to graph 1, first 50 nohead lt 2 lw 1 lc rgb "r
 
 # Llegenda
 plot "Resultats_Eulimp_1.dat" using 2:1 with lines title "Euler implícit, Relació de mallats = 1", \
-     "Resultats_Eulimp_05.dat" using 2:1 with lines title "Euler implícit, Relació de mallats = 0,5", \
+     "Resultats_Eulimp_05.dat" using 2:1 with lines title "Euler implícit, Relació de mallats = 0.5", \
      1/0 lc rgb "black" lw 1 title "Límits del teixit (0.75 cm - 1.25 cm)", \
      1/0 lc rgb "red" lw 1 title "Temperatura mínima (50 ºC)"
 
