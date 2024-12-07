@@ -1,8 +1,10 @@
 # PGuiada_MN2
-Hola! Això és un document on escriure coses generals! 
+En aquest repositori podeu trobar les implementacions dels diferents mètodes numèrics emprats (amb els seus errors respecte la solució analítica) en aquesta pràctica usant Fortran 95 + la generació de les animacions demanades en Python. Tot està organitzat per carpetes. 
 
-EG: He creat una carpeta on he posat tot el que està relacionat amb el mètode d'Euler explícit. Si podeu feu el mateix amb la resta d'implementacions, així queda més ordenat.
+Els arxius .f95 (codi en Fortran) s'han de compilar prèviament (usant gfortran o qualsevol altre compilador) abans de poder-los usar. Aquests permeten generar els arxius de resultats .dat. Ajustant els diversor paràmetres del codi (relació de mallats, temps final, etc.) es poden obtenir tots i cadascun dels .dat.
 
-EG: A la carpeta EExpl hi ha els arxius corresponents a l'Euler Explícit per les 3 relacions de mallats que demanen a l'enunciat (0.25, 0.49 i 0.51). Falta representar els de 0.49, però és només un moment. Ja ho faré. (el càlcul amb el mallat de 0.51 no convergeix, per això les gràfiques donen resultats absurds!!!!!!!!!!!!!!!!)
+*Nota: Els números g025, g049, g051 pels resultats del mètode d'Euler explícit i 1, 05 pels resultats del mètode d'Euler implícit fan referència a la relació entre mallats espacial i temporal.
 
-JS: Gràcies :)
+Les gràfiques estan fetes amb Gnuplot i es poden trobar a les carpetes del corresponent mètode en format .png.
+
+També podeu trobar una carpeta amb la representació de la solució analítica i el codi per generar-la.
