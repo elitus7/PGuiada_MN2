@@ -36,7 +36,7 @@ program e_im1
     
     do i = 1, n
         col1out(i) = col1a(i)  ! La primera columna són les z que tenen els mateixos valors a ambdós fitxers
-        col2out(i) = col2a(i) - col2b(i)  ! Solució Euler Implícit - Solució Analítica
+        col2out(i) = col1b(i) - col2a(i)  ! Solució Euler Implícit - Solució Analítica
     end do
 
     ! Escrivim els resultats en un document .dat nou per poder graficar

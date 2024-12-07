@@ -1,10 +1,10 @@
-set terminal pngcairo enhanced size 1500,1080 font "Cambria,25"
+set terminal pngcairo enhanced size 1500,1080 font "Cambria,28"
 set output 'Error_EIm_1.png'
-set title "Error mètode Euler Implícit (T Euler Implícit - T analítica)"
-set ylabel "Temperatura (ºC)"
+set title "Error mètode Euler Implícit (T analítica - T Euler Implícit)"
+set ylabel "Error (ºC)"
 set xlabel "Posició (cm)"
 set xrange[0:2]
-set yrange[0:60]
+set yrange[0:3]
 set grid
 set key at screen 0.7575, 0.2 center font "Cambria, 20" # Posició de la llegenda
 

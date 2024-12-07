@@ -1,7 +1,7 @@
-set terminal pngcairo enhanced size 1500,1080 font "Cambria,25"
+set terminal pngcairo enhanced size 1500,1080 font "Cambria,28"
 set output 'Error_EEx.png'
 set title "Error mètode Euler Explícit (T Euler Explícit - T analítica)"
-set ylabel "Temperatura (ºC)"
+set ylabel "Error (ºC)"
 set xlabel "Posició (cm)"
 set xrange[0:2]
 set yrange[0:0.08]
