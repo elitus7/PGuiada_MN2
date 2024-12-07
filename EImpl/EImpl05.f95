@@ -94,15 +94,15 @@ program eulerimp05
     !Creem un arxiu .dat on guardem els valors de Tn desnormalitzats
     OPEN(unit=10, file="Temps_Eulimp_05.dat", status="replace")
         DO i = 1,5
-            WRITE(10,*) (0.02/200)*(i-1)
+            WRITE(10,*) (0.02)*(i-1)
         END DO
         !Creem un arxiu .dat que generi els diferents valors del temps
     OPEN(unit=10, file="Resultats_Eulimp_05.dat", status="replace")
         DO i = 1, 101
-            WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02/200)*(i-1))
+            WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02)*(i-1))
         END DO
         !Creem un arxiu .dat que ens grafiqui x vs T
 
-    call system("copy Resultats_Eulimp_05.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
+    !call system("copy Resultats_Eulimp_05.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error") Per crear una còpia a la carpeta d'errors
 
 END program eulerimp05
