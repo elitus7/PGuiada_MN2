@@ -1,6 +1,6 @@
 set terminal pngcairo enhanced size 1500,1080 font "Cambria,30"
 set output 'solfinal_eexp.png'
-set title "Temperatura vs. Posició per t_{opt}"
+
 set ylabel "Temperatura (ºC)"
 set xlabel "Posició (cm)"
 set xrange[0:2]
