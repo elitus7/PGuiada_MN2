@@ -11,7 +11,7 @@ program e_explicit
     integer, parameter :: Ntmax = 30000 !Nombre de punts màxim del mallat espacial (em feia falta definir-ho perquè per treballar amb matrius les dimensions han de ser "paramter"...).
     integer :: Nt !Nombre de punts del mallat temporal.
     real, parameter :: z0 = 0, zf = 1 !Interval espacial normalitzat.
-    real, parameter :: t0 = 0, tf = 0.025 !Interval temporal normalitzat.
+    real, parameter :: t0 = 0, tf = 0.02037863095!Interval temporal normalitzat.
     real, parameter :: T_0 = (36.5+273.15) !Condició inicial i de contorn de temperatura.
     real :: gamma !Relació entre les amplades del mallat espacial i el mallat temporal.
     real :: T(nz), T_new(nz) !Vectors de temperatura que usarem en el bucle.
@@ -67,7 +67,7 @@ do j = 1, Nz
     z_real(j) = (j-1)*Deltaz*znorm
 end do
 
-open(unit=10, file="eulex_results_g025.dat", status="replace")
+open(unit=10, file="eulex_results_g025_solfinal.dat", status="replace")
     do n = 1, Nt
         t_real(n) = (n-1)*Deltat*tnorm
         write(10, *) (T_results(j, n)*T_norm - 273.15, j = 1, Nz) !Cada columna fa referència a una posició i cada fila a un instant de temps.
@@ -76,13 +76,13 @@ close(10)
 write(*,*) "========================="
 write(*,*) "Els resultats es poden veure a l'arxiu 'eulex_results.dat'."
 
-open(unit=10, file="posicions_z_g025.dat", status="replace")
+open(unit=10, file="posicions_z_g025_solfinal.dat", status="replace")
     do n = 1, Nz
         write(10,*) z_real(n)
     end do
 close(10)
 
-open(unit=10, file="temps_t_g025.dat", status="replace")
+open(unit=10, file="temps_t_g025_solfinal.dat", status="replace")
     do j = 1, Nt
         write(10,*) t_real(j)
     end do
@@ -90,13 +90,11 @@ close(10)
 
 !Ens guardem en un altre arxiu la temperatura en funció de la posició pel temps final. Ens resultarà útil per graficar i comparar mètodes numèrics amb la solució analítica.
 
-open(unit=10, file="eulex_results_f_g025.dat", status="replace")
+open(unit=10, file="eulex_results_f_g025_solfinal.dat", status="replace")
     do j = 1, Nz
         write(10, *) z_real(j)*100, (T_results(j, Nt) * T_norm - 273.15)
     end do
 close(10)
-
-call system("copy eulex_results_f_g025.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
 
 !Subrutina que ens permet calcular el nombre de punts del mallat temporal en funció del problema.
 contains

@@ -103,4 +103,6 @@ program eulerimp05
         END DO
         !Creem un arxiu .dat que ens grafiqui x vs T
 
+    call system("copy Resultats_Eulimp_05.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
+
 END program eulerimp05

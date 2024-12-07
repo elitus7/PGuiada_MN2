@@ -7,10 +7,10 @@ program sola
     real, parameter :: Tc = 36.5+273.15, T0 = (V**2*s)/k
     real, parameter :: Tc_norm = (36.5+273.15)/T0
     real, parameter :: t_norm = 0.025
-    real, parameter :: z_ini = 0, z_f= 1, discr = 2/100
+    real, parameter :: z_ini = 0, z_f= 1, discr = 0.01
     real :: valor, valor_suma
     real :: z_norm
-    integer, parameter :: n_max = int((z_f-z_ini)/discr) +1, m_max = int((z_f-z_ini)/discr) +1
+    integer, parameter :: n_max = 101, m_max = 101
     integer :: n, m
     real, dimension(n_max) :: valors_z
     real, dimension(n_max) :: valors_sol
@@ -19,14 +19,14 @@ program sola
     open(unit=10, file="resultats.dat", status="replace")
 
     ! Bucle per les z normalitzades
-    do n = 1, n_max + 1
+    do n = 1, n_max
         z_norm = z_ini + (n-1)*discr
         valors_z(n) = z_norm
 
         valor_suma = 0.0
 
         ! Calculem el sumatori
-        do m=1, m_max + 1
+        do m=1, m_max
 
             valor = (4.0 / ((2.0 * m - 1.0) * pi)) * &
                     (1.0 - e**(-(2.0 * m - 1.0)**2 * pi**2 * t_norm)) * &

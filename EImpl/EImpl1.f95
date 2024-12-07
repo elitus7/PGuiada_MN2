@@ -107,6 +107,8 @@ program eulerimp1
             WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02/100)*(i-1))
         END DO
 
+    call system("copy Resultats_Eulimp_1.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
+
 END program eulerimp1
 
 
