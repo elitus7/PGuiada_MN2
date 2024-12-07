@@ -104,10 +104,10 @@ program eulerimp1
         !Creem un arxiu .dat que generi els diferents valors del temps
     OPEN(unit=10, file="Resultats_Eulimp_1.dat", status="replace")
         DO i = 1, 101
-            WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02/100)*(i-1))
+            WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02)*(i-1))
         END DO
 
-    call system("copy Resultats_Eulimp_1.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error")
+    !call system("copy Resultats_Eulimp_1.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error") Necessitàvem crear una còpia
 
 END program eulerimp1
 
