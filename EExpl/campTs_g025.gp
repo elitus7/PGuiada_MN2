@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced size 1920,1080 enhanced font "Cambria,26" 
+set terminal pngcairo enhanced size 1500,1080 enhanced font "Cambria,26" 
 set output 'campTs_g025.png'
 
 set ylabel "Temps (s)"
@@ -7,6 +7,7 @@ set label 1 center rotate at screen 0.97,0.5 "Temperatura (ºC)" #Etiqueta rotad
 set xrange[0:2]
 set yrange[0:71]
 set samples 60,60
+set format x "%.1f"
 
 #set key inside top right # Posició de la llegenda
 

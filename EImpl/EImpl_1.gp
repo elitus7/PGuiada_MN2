@@ -6,7 +6,7 @@ set xrange[0:2]
 set yrange[0:60]
 set grid
 set key at screen 0.7200, 0.2 center font "Cambria, 20" # Posició de la llegenda
-
+set format x "%.1f"
 # Línies verticals
 set arrow from 1.25, graph 0 to 1.25, graph 1 nohead lt 2 lw 1 lc rgb "black"
 set arrow from 0.75, graph 0 to 0.75, graph 1 nohead lt 2 lw 1 lc rgb "black"
