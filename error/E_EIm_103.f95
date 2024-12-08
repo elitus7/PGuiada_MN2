@@ -1,4 +1,4 @@
-program e_im1
+program e_im103
     implicit none
 
     integer, parameter :: nmax = 1000 !Valor gran, no ens interessa el nombre concret
@@ -7,9 +7,9 @@ program e_im1
     character(len=50) :: analit, eim, error
 
     ! Noms dels arxius
-    analit = "resultats.dat"
+    analit = "resultats_003.dat"
     eim = "Resultats_Eulimp_1.dat"
-    error = "Error_EIm_1.dat"
+    error = "Error_EIm_103.dat"
 
     ! Llegim el fitxer de la solució analítica
     open(unit=10, file=analit, status="old", action="read")
@@ -36,7 +36,7 @@ program e_im1
     
     do i = 1, n
         col1out(i) = col1a(i)  ! La primera columna són les z que tenen els mateixos valors a ambdós fitxers
-        col2out(i) = col1b(i) - col2a(i)  ! Solució Analítica - Solució Euler Implícit
+        col2out(i) = col2a(i) - col1b(i)  ! Solució Euler Implícit - Solució Analítica
     end do
 
     ! Escrivim els resultats en un document .dat nou per poder graficar
@@ -46,4 +46,4 @@ program e_im1
     end do
     close(12)
 
-end program e_im1
+end program e_im103
