@@ -1,5 +1,5 @@
 # PGuiada_MN2
-En aquest repositori podeu trobar les implementacions dels diferents mètodes numèrics emprats (amb els seus errors respecte la solució analítica) en aquesta pràctica usant Fortran 95 + la generació de les animacions demanades en Python. Tot està organitzat per carpetes. 
+En aquest repositori podeu trobar les implementacions dels diferents mètodes numèrics emprats (amb els seus errors respecte la solució analítica) per a la pràctica sobre la modelització del tractament d'ablació cardíaca IVS usant Fortran 95 + la generació de les animacions demanades en Python. Tot està organitzat per carpetes. 
 
 Els arxius .f95 (codi en Fortran) s'han de compilar prèviament (usant gfortran o qualsevol altre compilador) abans de poder-los usar. Aquests permeten generar els arxius de resultats .dat. Ajustant els diversor paràmetres del codi (relació de mallats, temps final, etc.) es poden obtenir tots i cadascun dels .dat.
 
