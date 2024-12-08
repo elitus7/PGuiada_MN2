@@ -1,4 +1,4 @@
-program eulerimp05
+program eulerimp05_03
     implicit none
 
     REAL :: T0(101) ! T inicial (Tc a tot arreu)
@@ -74,7 +74,7 @@ program eulerimp05
     END DO
     !Definim la inversa de la diagonal
     Tm = T0
-    DO i = 1,5 !fem 5 pases per arribar a t = 0.025
+    DO i = 1,6 !fem 6 pases per arribar a t = 0.03
         DO x = 2,100
             Tm(x) = Tm(x) + pas_t
         END DO
@@ -87,17 +87,17 @@ program eulerimp05
         Tm = Tn 
     END DO
     !Apliquem el metode de Euler implicit
-    OPEN(unit=10, file="Temperatura_Eulimp_05.dat", status="replace")
+    OPEN(unit=10, file="Temperatura_Eulimp05_03.dat", status="replace")
         DO i = 1, 101
             WRITE(10,*) Tn(i)*674 - 273.15
         END DO
     !Creem un arxiu .dat on guardem els valors de Tn desnormalitzats
-    OPEN(unit=10, file="Temps_Eulimp_05.dat", status="replace")
+    OPEN(unit=10, file="Temps_Eulimp05_03.dat", status="replace")
         DO i = 1,5
             WRITE(10,*) (0.02)*(i-1)
         END DO
         !Creem un arxiu .dat que generi els diferents valors del temps
-    OPEN(unit=10, file="Resultats_Eulimp_05.dat", status="replace")
+    OPEN(unit=10, file="Resultats_Eulimp05_03.dat", status="replace")
         DO i = 1, 101
             WRITE(10,*) (Tn(i)*674 - 273.15), ((0.02)*(i-1))
         END DO
@@ -105,4 +105,4 @@ program eulerimp05
 
     !call system("copy Resultats_Eulimp_05.dat C:\\Users\\juuns\\Documents\\GitHub\\PGuiada_MN2\\error") Per crear una còpia a la carpeta d'errors
 
-END program eulerimp05
+END program eulerimp05_03
